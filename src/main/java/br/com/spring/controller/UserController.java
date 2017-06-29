@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.spring.model.UserModel;
 import br.com.spring.param.UserParam;
+import br.com.spring.presenter.UserPresenter;
 import br.com.spring.service.IHomeService;
+
 
 @RestController
 public class UserController {
@@ -18,13 +20,21 @@ public class UserController {
 	private IHomeService service;
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public String home(@RequestParam("name") String param) {
+	public UserPresenter home(@RequestParam("name") String userName) throws Exception {
+		UserModel model = new UserModel();
+		UserParam param = new UserParam();
+		
+		param.setName(userName);
+		model = service.findsUser(userName);
+		validateConsult(model);
+		UserPresenter presenter = converToPresenter(model);
+		
+		presenter.setName(model.getNome());
 
-		String result = service.find(param);
-
-		return result;
+		return presenter;
 	}
-
+	
+	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public UserModel save(@RequestBody UserParam param) throws Exception {
 
@@ -46,6 +56,30 @@ public class UserController {
 			throw new Exception("Menor de idade nao permitido");
 		}
 
+	}
+	
+	private void validateConsult(UserModel model) throws Exception{
+		
+		if(model == null){
+			
+			throw new Exception("Usuário não encontrado !");
+		}
+		
+	}
+	
+	private UserPresenter converToPresenter(UserModel model){
+		
+		UserPresenter presenter = new UserPresenter();
+		
+		presenter.setAge(model.getAge());
+		presenter.setAltura(model.getAltura());
+		presenter.setPeso(model.getPeso());
+		
+		
+		return presenter;
+		
+		
+		
 	}
 
 }

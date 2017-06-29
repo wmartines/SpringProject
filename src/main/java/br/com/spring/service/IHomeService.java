@@ -6,6 +6,6 @@ import br.com.spring.param.UserParam;
 public interface IHomeService {
 
 	public UserModel save(UserParam param);
-	
-	public String find(String param);
+
+	UserModel findsUser(String userName);
 }
