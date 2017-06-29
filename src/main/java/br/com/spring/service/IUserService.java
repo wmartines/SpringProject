@@ -3,9 +3,11 @@ package br.com.spring.service;
 import br.com.spring.model.UserModel;
 import br.com.spring.param.UserParam;
 
-public interface IHomeService {
+public interface IUserService {
 
 	public UserModel save(UserParam param);
+
+	UserModel findsUser(UserParam param);
 	
-	public String find(String param);
+	UserModel deleteUser(UserModel model);
 }

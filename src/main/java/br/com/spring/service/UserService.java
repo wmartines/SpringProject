@@ -1,7 +1,6 @@
 package br.com.spring.service;
 
 import java.util.Calendar;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,51 +9,49 @@ import br.com.spring.crud.UserCrud;
 import br.com.spring.model.UserModel;
 import br.com.spring.param.UserParam;
 
-
-
-
-
 @Service
-public class HomeService implements IHomeService {
-	
+public class UserService implements IUserService {
 
-	
 	@Autowired
 	private UserCrud userCrud;
-	
-	
-	public List<UserModel> find(UserParam param){
-		
-		
-		
-		List<UserModel> names =	(List<UserModel>) userCrud.findByName(param.getName());
-		
-		
-		return names;
-		
-		
-	}
-	
+
+	/**
+	 * Metodo responsavel por salvar um usuario
+	 */
 	@Override
 	public UserModel save(UserParam param) {
-	
+
 		UserModel model = new UserModel();
 		model.setAge(param.getAge());
-		model.setAltura(param.getAltura());	
+		model.setAltura(param.getAltura());
 		model.setNome(param.getName());
-		model.setPeso(param.getPeso());		
+		model.setPeso(param.getPeso());
 		model.setDateInput(Calendar.getInstance());
-		
+
 		return userCrud.save(model);
-		
-		
-		
+
+	}
+
+	/**
+	 * Metodo responsavel por consultar um usuario
+	 */
+	@Override
+	public UserModel findsUser(UserParam param) {
+
+		// TODO Auto-generated method stub
+		return userCrud.findByName(param.getName());
 	}
 
 	@Override
-	public String find(String param) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserModel deleteUser(UserModel model) {
+		
+		
+		userCrud.delete(model.getNome());	 
+		
+		return userCrud.findByName(param.getName());
+		 
+		
+		 
 	}
-	
+
 }

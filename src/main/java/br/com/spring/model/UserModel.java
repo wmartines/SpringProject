@@ -21,7 +21,7 @@ public class UserModel {
 	private Integer id;
 
 	@Column(name = "NAME")
-	private String nome;
+	private String name;
 
 	@Column(name = "AGE")
 	private int age;
@@ -44,11 +44,11 @@ public class UserModel {
 	}
 
 	public String getNome() {
-		return nome;
+		return name;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.name = nome;
 	}
 
 	public int getAge() {

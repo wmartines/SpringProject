@@ -5,11 +5,15 @@ import org.springframework.stereotype.Repository;
 
 import br.com.spring.model.UserModel;
 
-
+/**
+ * Repositorio Tabela UserModel
+ * 
+ * @author Wilson Martines
+ *
+ */
 @Repository
-public interface UserCrud extends CrudRepository<UserModel,Long> {
+public interface UserCrud extends CrudRepository<UserModel, Long> {
 
-	
-	public UserModel findByName(String nome);
+	public UserModel findByName(String name);
 
 }
