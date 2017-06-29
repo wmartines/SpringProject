@@ -10,17 +10,14 @@ import br.com.spring.model.UserModel;
 import br.com.spring.param.UserParam;
 
 @Service
-public class HomeService implements IHomeService {
+public class UserService implements IUserService {
 
 	@Autowired
 	private UserCrud userCrud;
 
-	public UserModel find(UserParam param) {
-
-		return userCrud.findByName(param.getName());
-
-	}
-
+	/**
+	 * Metodo responsavel por salvar um usuario
+	 */
 	@Override
 	public UserModel save(UserParam param) {
 
@@ -35,11 +32,26 @@ public class HomeService implements IHomeService {
 
 	}
 
+	/**
+	 * Metodo responsavel por consultar um usuario
+	 */
 	@Override
-	public UserModel findsUser(String userName) {
-		
+	public UserModel findsUser(UserParam param) {
+
 		// TODO Auto-generated method stub
-		return userCrud.findByName(userName);
+		return userCrud.findByName(param.getName());
+	}
+
+	@Override
+	public UserModel deleteUser(UserModel model) {
+		
+		
+		userCrud.delete(model.getNome());	 
+		
+		return userCrud.findByName(param.getName());
+		 
+		
+		 
 	}
 
 }
