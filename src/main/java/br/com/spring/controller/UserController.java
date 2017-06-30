@@ -1,5 +1,8 @@
 package br.com.spring.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,7 @@ import br.com.spring.param.UserParam;
 import br.com.spring.presenter.UserPresenter;
 import br.com.spring.service.IUserService;
 
+
 @RestController
 public class UserController {
 
@@ -29,23 +33,27 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public UserPresenter home(@RequestParam("name") String userName) throws Exception {
+	public List<UserPresenter> home(@RequestParam("name")String userName) throws Exception {
 
-		UserModel model = new UserModel();
+		
 		UserParam param = new UserParam();
 		// Informa parametro recebido para consulta
 		param.setName(userName);
 
 		// Efetua consulta no banco de dados e popula o model
-		model = service.findsUserByName(param);
+		List <UserModel> lsUserModel = service.findsUserByName(param);
 
-		// Valida os resultados da pesquisa
-		validateConsult(model);
 
 		// Converte para presenter
+		List<UserPresenter> lspresenter = new ArrayList<>();
+		for(UserModel model : lsUserModel){ 
+			
 		UserPresenter presenter = converToPresenter(model);
+		lspresenter.add(presenter);
+		
+		}
 
-		return presenter;
+		return lspresenter;
 	}
 
 	/**

@@ -11,13 +11,20 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+
 /**
  * @author as
  *
  */
 @Entity
 @Table(name = "USER")
-public class UserModel {
+public class UserModel extends SerializableSerializer{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3601171414741897053L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -64,8 +71,8 @@ public class UserModel {
 		return name;
 	}
 
-	public void setName(String nome) {
-		this.name = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getAge() {

@@ -1,11 +1,13 @@
 package br.com.spring.service;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.spring.crud.UserCrud;
+import br.com.spring.dao.UserDao;
 import br.com.spring.model.UserModel;
 import br.com.spring.param.UserParam;
 
@@ -14,6 +16,9 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private UserCrud userCrud;
+	
+	@Autowired
+	private UserDao userDao;
 
 	/**
 	 * Metodo responsavel por salvar um usuario
@@ -36,10 +41,12 @@ public class UserService implements IUserService {
 	 * Metodo responsavel por consultar um usuario
 	 */
 	@Override
-	public UserModel findsUserByName(UserParam param) {
-
-		// TODO Auto-generated method stub
-		return userCrud.findByName(param.getName());
+	public List<UserModel> findsUserByName(UserParam param) {
+		
+		return userDao.findAllUser(param);
+		
+		
+		
 	}
 
 	
