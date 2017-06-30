@@ -11,14 +11,25 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+
+/**
+ * @author as
+ *
+ */
 @Entity
 @Table(name = "USER")
-public class UserModel {
+public class UserModel extends SerializableSerializer{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3601171414741897053L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CD_USER")
-	private Integer id;
+	private Integer cdUser;
 
 	@Column(name = "NAME")
 	private String name;
@@ -35,20 +46,33 @@ public class UserModel {
 	@Column(name = "DATE")
 	private Calendar dateInput;
 
-	public Integer getId() {
-		return id;
+	public Integer getCdUser() {
+		return cdUser;
+	}
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "updateDate")
+	private Calendar dateUpdate;	
+	
+
+	public Calendar getDateUpdate() {
+		return dateUpdate;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setDateUpdate(Calendar dateUpdate) {
+		this.dateUpdate = dateUpdate;
 	}
 
-	public String getNome() {
+	public void setCdUser(Integer id) {
+		this.cdUser = id;
+	}
+
+	public String getName() {
 		return name;
 	}
 
-	public void setNome(String nome) {
-		this.name = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getAge() {

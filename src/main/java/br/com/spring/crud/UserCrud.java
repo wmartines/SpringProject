@@ -15,5 +15,7 @@ import br.com.spring.model.UserModel;
 public interface UserCrud extends CrudRepository<UserModel, Long> {
 
 	public UserModel findByName(String name);
+	
+	public UserModel findByCdUser(Integer cdUser);
 
 }

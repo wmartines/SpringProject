@@ -1,14 +1,17 @@
 package br.com.spring.param;
 
+
 public class UserParam {
 
 	private String name;
 	
-	private int age;
+	private Integer age;
 	
-	private double peso;
+	private Double peso;
 	
-	private double altura;
+	private Double altura;
+	
+	private Integer cdUser;
 
 	@Override
 	public String toString() {
@@ -19,15 +22,15 @@ public class UserParam {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String userName) {
+		this.name = userName;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -35,7 +38,7 @@ public class UserParam {
 		return peso;
 	}
 
-	public void setPeso(double peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
 
@@ -43,8 +46,16 @@ public class UserParam {
 		return altura;
 	}
 
-	public void setAltura(double altura) {
+	public void setAltura(Double altura) {
 		this.altura = altura;
+	}
+
+	public Integer getCdUser() {
+		return cdUser;
+	}
+
+	public void setCdUser(Integer cdUser) {
+		this.cdUser = cdUser;
 	}
 	
 }
