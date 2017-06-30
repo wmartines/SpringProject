@@ -24,7 +24,7 @@ public class UserService implements IUserService {
 		UserModel model = new UserModel();
 		model.setAge(param.getAge());
 		model.setAltura(param.getAltura());
-		model.setNome(param.getName());
+		model.setName(param.getName());
 		model.setPeso(param.getPeso());
 		model.setDateInput(Calendar.getInstance());
 
@@ -36,22 +36,38 @@ public class UserService implements IUserService {
 	 * Metodo responsavel por consultar um usuario
 	 */
 	@Override
-	public UserModel findsUser(UserParam param) {
+	public UserModel findsUserByName(UserParam param) {
 
 		// TODO Auto-generated method stub
 		return userCrud.findByName(param.getName());
 	}
 
-	@Override
-	public UserModel deleteUser(UserModel model) {
+	
+	public UserModel update(UserParam param){
 		
+		UserModel model = userCrud.findByCdUser(param.getCdUser());	
 		
-		userCrud.delete(model.getNome());	 
+		model.setAge(param.getAge());
+		model.setAltura(param.getAltura());
+		model.setDateUpdate(Calendar.getInstance());
+		model.setName(param.getName());
 		
-		return userCrud.findByName(param.getName());
-		 
+		userCrud.save(model);
 		
-		 
+		return model;
+		
 	}
+
+	@Override
+	public void delete(Integer cdUser) {
+		
+		UserModel model = userCrud.findByCdUser(cdUser);		
+		
+		userCrud.delete(model);
+		
+		
+	}
+
+	
 
 }

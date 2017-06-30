@@ -7,7 +7,10 @@ public interface IUserService {
 
 	public UserModel save(UserParam param);
 
-	UserModel findsUser(UserParam param);
+	UserModel findsUserByName(UserParam param);		
 	
-	UserModel deleteUser(UserModel model);
+	UserModel update(UserParam param);
+	
+	void delete (Integer cdUser);
+
 }

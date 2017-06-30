@@ -9,6 +9,8 @@ public class UserParam {
 	private double peso;
 	
 	private double altura;
+	
+	private Integer cdUser;
 
 	@Override
 	public String toString() {
@@ -45,6 +47,14 @@ public class UserParam {
 
 	public void setAltura(double altura) {
 		this.altura = altura;
+	}
+
+	public Integer getCdUser() {
+		return cdUser;
+	}
+
+	public void setCdUser(Integer cdUser) {
+		this.cdUser = cdUser;
 	}
 	
 }
