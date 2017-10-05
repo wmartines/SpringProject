@@ -24,6 +24,7 @@ public class UserController {
 
 	@Autowired
 	private IUserService service;
+	
 
 	/**
 	 * Metodo responsavel por consultar um usuario no banco de dados

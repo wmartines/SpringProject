@@ -1,5 +1,6 @@
 package br.com.spring.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -11,20 +12,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
-
 /**
  * @author as
  *
  */
 @Entity
 @Table(name = "USER")
-public class UserModel extends SerializableSerializer{
-
+public class UserModel implements Serializable{
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3601171414741897053L;
+	private static final long serialVersionUID = 1775202184604758216L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
